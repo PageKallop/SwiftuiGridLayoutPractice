@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let animals = [["🐶🐼"],["🐭🐹"],["🐰🦊"],["🐻🐻‍❄️"]]
-    @State private var sliderValue: CGFloat = 1
+    let animals = ["🐶","🐼","🐭","🐹","🐰","🦊","🐻","🐻‍❄️"]
+    @State private
+    var sliderValue: CGFloat = 1
     
     var body: some View {
         NavigationView {
@@ -27,10 +28,10 @@ struct ContentView: View {
                 .clipShape(Circle())
             
             
-            List(self.animals, id: \.self) { animalPair in
-                ForEach(animalPair, id: \.self) { animal in
+            List(self.animals.chunks(size: Int(self.sliderValue)), id: \.self) { chunk in
+                ForEach(chunk, id: \.self) { animal in
                     Text(animal)
-                        .font(.system(size: 100))
+                        .font(.system(size: CGFloat(300/self.sliderValue)))
                 }
             }
             
